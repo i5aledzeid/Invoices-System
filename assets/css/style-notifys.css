@@ -1,0 +1,59 @@
+/* SUB MENU {Notifications} */
+
+.sub-menu-x {
+    display: none;
+}
+
+.navbar ul li:hover .sub-menu-x {
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    margin-left: -55px;
+    
+}
+
+.navbar ul li:hover .sub-menu-x ul {
+    display: block;
+    width: 100%;
+    /*background: #009688;*/
+    background: red;
+}
+
+.navbar ul li:hover .sub-menu-x ul li {
+    width: 64px;
+    background: transparent;
+    text-align: right;
+    padding-top: 8px;
+    padding-bottom: 16px;
+}
+
+.navbar ul li:hover .sub-menu-x ul li:last-child {
+    border-bottom: none;
+    width: 180%;
+    right: 140px;
+    background: red;
+}
+
+.navbar ul li:hover .sub-menu-x ul li a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.sub-menu-x .more {
+    color: yellow;
+}
+
+.sub-menu-x .message {
+    color: #000;
+    background: yellow;
+    margin-left: 1px;
+}
+
+.notify-menu {
+    background: blue;
+}
+
+/* SUB MENU */
