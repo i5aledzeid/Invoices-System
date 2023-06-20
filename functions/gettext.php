@@ -1,3 +1,5 @@
 <?php
-    echo "Khaled Zeid";
+    function gettext() {
+        echo "Khaled Zeid";
+    }
 ?>
