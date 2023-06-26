@@ -1,12 +1,14 @@
 <?php 
 session_start();
 include "../../database/db_conn.php";
-if (!isset($_SESSION['id'])) {
+/*if (!isset($_SESSION['id'])) {
     header('location: index6.php');
     die();
-}
-if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-
+}*/
+/*if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {*/
+    $username = $_GET['ids'];
+    $query1 = "SELECT * FROM user WHERE id='$username'";
+    $query_run1 = mysqli_query($conn, $query1);
  ?>
 <!DOCTYPE html>
 <html>
@@ -219,47 +221,37 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             </a>
             <a href="#">-->
                 <?php
-                    $id = $_SESSION['id'];
-                    $query1 = "SELECT * FROM user WHERE id='$id'";
-                    $query_run1 = mysqli_query($conn, $query1);
+                    
                     if (mysqli_num_rows($query_run1) > 0) {
                         foreach ($query_run1 as $row1) {
                             echo '
                                 <img src="' . $row1['image'] . '" alt="profile-image" class="profile-image">
                                 <img src="' . $row1['role_image'] . '" alt="profile-image" style="position: absolute; right: 110px; top: 130px; width: 20px; height:20px;" class="profile-image">
                             ';
+                            echo '
+                            </a>
+                            <h3>
+                            <a style="color: white; font-size: 10px;">
+                            ';
+                            if ($row1['role'] == '3') {
+                                    echo "(المالك)";
+                                }
+                                elseif ($row1['role'] == '1') {
+                                    echo "(المسؤول)";
+                                }
+                                elseif ($row1['role'] == '2') {
+                                    echo "(مستخدم)";
+                            }
+                            echo '
+                                </a>'. $row1['name'].'
+                            ';
+                            echo '
+                                </h3>
+                                <div class="row">
+                            ';
                         }
                     }
                 ?>
-            </a>
-            <h3>
-                <a style="color: white; font-size: 10px;">
-                    <?php
-                        $id = $_SESSION['id'];
-                        $query = "SELECT * FROM user WHERE id='$id'";
-                        $query_run = mysqli_query($conn, $query);
-                        if (mysqli_num_rows($query_run) > 0) {
-                            foreach ($query_run as $row) {
-                                if ($row['role'] == '3') {
-                                    echo "(المالك)";
-                                }
-                                elseif ($row['role'] == '1') {
-                                    echo "(المسؤول)";
-                                }
-                                elseif ($row['role'] == '2') {
-                                    echo "(مستخدم)";
-                                }
-                            }
-                        }
-                    ?>
-                </a>
-                <?php echo $_SESSION['name']; ?>
-            </h3>
-            <div class="row">
-                <!--<div class="col">
-                    <p>إيميل</p>
-                </div>-->
-                <!-- ONLINE STATUS -->
                 <style>
                     .online-status {
                         position: relative;
@@ -319,7 +311,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
                     $time = time();
                     $class = "offline-status";
                     $status = 'Offline';
-                    if ($row['last_login'] > $time) {
+                    if ($row1['last_login'] > $time) {
                         $class = "online-status";
                         $status = 'متصل';
                     ?>
@@ -390,7 +382,7 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
             -->
             <form action="../../admin/edit_user_panel.php" method="POST">
                 <input type="hidden" name="id" value="<?php echo $_SESSION['id']; ?>">
-                <input type="submit" name="submit" class="btn btn-primary" value="تعديل">
+                <input type="submit" name="submit" class="btn btn-primary" style="width: 120px;" value="<?php echo $row1['email']; ?>">
             </form>
             <div class="profile-bottom">
                 
@@ -437,8 +429,8 @@ if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
 </html>
 
 <?php 
-}else{
+/*}else{
      header("Location: index.php");
      exit();
-}
+}*/
  ?>
