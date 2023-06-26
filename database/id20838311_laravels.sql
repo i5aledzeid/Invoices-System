@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 18, 2023 at 05:22 PM
+-- Generation Time: Jun 22, 2023 at 04:19 PM
 -- Server version: 10.5.20-MariaDB
 -- PHP Version: 7.3.33
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `id20838311_laravels`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chatbot`
+--
+
+CREATE TABLE `chatbot` (
+  `id` int(11) NOT NULL,
+  `replies` text NOT NULL,
+  `queries` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `chatbot`
+--
+
+INSERT INTO `chatbot` (`id`, `replies`, `queries`) VALUES
+(1, 'good morning.', 'good morning.'),
+(2, 'good evening.', 'good evening.'),
+(3, 'good night.', 'good night.'),
+(4, 'وعليكم السلام ورحمة الله وبركاته', 'السلام عليكم ورحمة الله وبركاته'),
+(5, 'الحمد لله ، أنا بخير', 'كيف حالك؟'),
+(6, 'أنا خالد زيد', 'ما إسمك؟'),
+(7, 'عمري 27 سنة', 'كم عمرك؟'),
+(8, 'أنا برنامج دردشة تم تصميم بالذكاء الإصطناعي', 'من أنت؟'),
+(9, 'الله بالسماء', 'أين الله؟'),
+(10, 'النبي محمد صلى الله عليه وسلم', 'من أفضل شخصية بالتاريخ؟');
 
 -- --------------------------------------------------------
 
@@ -175,7 +203,21 @@ INSERT INTO `drivers` (`id`, `car_number`, `factory`, `car_owner`, `driver_name`
 (178, 5998, '', 'الحماد', 'سوكا', 0.00, 0.00, 0.00, 0.00, 'راتب سوكا فولفو شهر 5-6', 1115.00, 0.00, 0.00, 0.00, 0.00, 0.00, '2023-06-17', 6, 2, 0.00, 0.00),
 (179, 5998, '', 'الحماد', 'نور', 0.00, 0.00, 0.00, 0.00, 'راتب علي الشهر 5', 200.00, 0.00, 0.00, 0.00, 0.00, 0.00, '2023-06-17', 6, 2, 0.00, 0.00),
 (180, 2042, '', 'الحماد', '', 0.00, 0.00, 0.00, 0.00, '	رواتب سواقين شهر 5', 0.00, 2315.00, 1.00, 2315.00, 0.00, 0.00, '2023-06-17', 6, 2, 0.00, 0.00),
-(181, 2042, '', 'الحماد', 'شهباز', 0.00, 0.00, 0.00, 0.00, 'دفعة لشهباز', 0.00, 0.00, 0.00, 0.00, 0.00, 3000.00, '2023-06-03', 6, 3, 0.00, 0.00);
+(181, 2042, '', 'الحماد', 'شهباز', 0.00, 0.00, 0.00, 0.00, 'دفعة لشهباز', 0.00, 0.00, 0.00, 0.00, 0.00, 3000.00, '2023-06-18', 6, 3, 0.00, 0.00),
+(184, 2042, '', 'الحماد', 'شهباز', 0.00, 0.00, 0.00, 0.00, 'دفعة لشهباز', 0.00, 0.00, 0.00, 0.00, 0.00, 2000.00, '2023-06-22', 6, 3, 0.00, 0.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `logs`
+--
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `Time` datetime NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -193,18 +235,6 @@ CREATE TABLE `notifications` (
   `date` datetime NOT NULL,
   `seen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `title`, `subtitle`, `status`, `type`, `created_by`, `date`, `seen`) VALUES
-(1, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 1),
-(2, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 2),
-(3, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 3),
-(4, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 4),
-(5, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 5),
-(6, 'تنبيه', 'تم إضافة فاتورة جديدة', 0, 3, 'خالد', '2023-06-18 05:06:56', 6);
 
 -- --------------------------------------------------------
 
@@ -250,7 +280,10 @@ CREATE TABLE `qrcode` (
 
 INSERT INTO `qrcode` (`id`, `qrtext`, `qrimage`) VALUES
 (1, 'https://mkh888.000webhostapp.com/layouts/workshop_invoices/view_workshop_invoice.php?id=2327184', '1686557922.png'),
-(2, 'لبيالبايبا', '1686679628.png');
+(2, 'لبيالبايبا', '1686679628.png'),
+(3, 'google.com', '1687275156.png'),
+(4, 'John', '1687289856.png'),
+(5, 'Sara', '1687326580.png');
 
 -- --------------------------------------------------------
 
@@ -310,12 +343,46 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `user_name`, `email`, `password`, `name`, `middle`, `last`, `image`, `role`, `role_image`, `last_login`) VALUES
-(1, 'i5aledzeid', 'i5aledzeid@gmail.com', 'd5667a206565cf65d49dd3dfc4c2118c', 'خالد', 'محمد', 'زيد', 'https://raw.githubusercontent.com/i5aledzeid/php/master/assets/images/admin/i5aledzeid.jpg', 3, '../assets/images/verified_label_badge_checkmark_logo_icon.png', 1687103303),
-(2, 'admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'مفيد', '', 'زيد', '../assets/images/profile-images/mofeed_image.png', 1, '../assets/images/store_verified_shopping_ecommerce_cart_icon.png', 0),
-(3, 'mkh', 'mkh@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ماجد خالد الحماد', '', '', '../assets/images/profile/avatar_man_muslim_icon.png', 2, '../assets/images/verified_icon.png', 0),
-(4, 'user', 'user@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'مستخدم', '', '', '../../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png', 0),
-(5, 'sara', 'sara@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'سارة', NULL, NULL, '../../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png', 0),
-(6, 'john', 'john@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'جون', NULL, NULL, '../../assets/images/profile/avatar_male_man_portrait_icon.png', 2, '../assets/images/user_male_icon.png', 0);
+(1, 'i5aledzeid', 'i5aledzeid@gmail.com', 'd5667a206565cf65d49dd3dfc4c2118c', 'خالد', 'محمد', 'زيد', 'https://raw.githubusercontent.com/i5aledzeid/php/master/assets/images/admin/i5aledzeid.jpg', 3, '../assets/images/verified_label_badge_checkmark_logo_icon.png', 1687415336),
+(2, 'admin', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'مفيد', '', 'زيد', '../../assets/images/profile-images/mofeed_image.png', 1, '../assets/images/store_verified_shopping_ecommerce_cart_icon.png', 0),
+(3, 'mkh', 'mkh@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'ماجد خالد الحماد', '', '', '../../assets/images/profile/avatar_man_muslim_icon.png', 2, '../assets/images/verified_icon.png', 0),
+(4, 'user', 'user@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'مستخدم', '', '', 'https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm0yMi1rd2FuLTA1Ni5qcGc.jpg', 2, '../assets/images/user_male_icon.png', 0),
+(5, 'sara', 'sara@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'سارة', NULL, NULL, 'https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1LzQ0NS1tY2tpbnNleS0wMjI0LXBhaS0xLmpwZw.jpg', 2, '../assets/images/user_male_icon.png', 0),
+(6, 'shah', 'shah@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'شهباز', NULL, NULL, 'https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvMjAwLWFlLWV5ZS0zMDA0LmpwZw.jpg', 4, '../assets/images/user_male_icon.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `weekly_traffic`
+--
+
+CREATE TABLE `weekly_traffic` (
+  `id` int(11) NOT NULL,
+  `car_number` int(11) NOT NULL,
+  `driver_name` varchar(255) NOT NULL,
+  `sat` varchar(255) DEFAULT NULL,
+  `sun` varchar(255) DEFAULT NULL,
+  `mon` varchar(255) DEFAULT NULL,
+  `tue` varchar(255) DEFAULT NULL,
+  `wed` varchar(255) DEFAULT NULL,
+  `thu` varchar(255) DEFAULT NULL,
+  `fri` varchar(255) DEFAULT NULL,
+  `week` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `weekly_traffic`
+--
+
+INSERT INTO `weekly_traffic` (`id`, `car_number`, `driver_name`, `sat`, `sun`, `mon`, `tue`, `wed`, `thu`, `fri`, `week`, `month`, `start_date`, `end_date`) VALUES
+(1, 2042, 'شهباز', '', '', '', '', '', '', NULL, 3, 6, '2023-06-22', '2023-06-22'),
+(2, 9750, 'نور', '', '', '', '', '', '', NULL, 3, 6, '2023-06-22', '2023-06-22'),
+(3, 5998, 'سوكا', '', '', '', '', '', '', NULL, 3, 6, '2023-06-22', '2023-06-22'),
+(4, 3837, 'علي', '', '', '', '', '', '', NULL, 3, 6, '2023-06-22', '2023-06-22'),
+(5, 4269, 'نصار', '', '', '', '', '', '', NULL, 3, 6, '2023-06-22', '2023-06-22');
 
 -- --------------------------------------------------------
 
@@ -378,9 +445,21 @@ INSERT INTO `workshop` (`invoice_number`, `workshop_title`, `workshop_subtitle`,
 --
 
 --
+-- Indexes for table `chatbot`
+--
+ALTER TABLE `chatbot`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `drivers`
 --
 ALTER TABLE `drivers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `logs`
+--
+ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -414,6 +493,12 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `weekly_traffic`
+--
+ALTER TABLE `weekly_traffic`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `workshop`
 --
 ALTER TABLE `workshop`
@@ -424,16 +509,28 @@ ALTER TABLE `workshop`
 --
 
 --
+-- AUTO_INCREMENT for table `chatbot`
+--
+ALTER TABLE `chatbot`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `drivers`
 --
 ALTER TABLE `drivers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=185;
+
+--
+-- AUTO_INCREMENT for table `logs`
+--
+ALTER TABLE `logs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `profits`
@@ -445,7 +542,7 @@ ALTER TABLE `profits`
 -- AUTO_INCREMENT for table `qrcode`
 --
 ALTER TABLE `qrcode`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `transporters`
@@ -458,6 +555,12 @@ ALTER TABLE `transporters`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `weekly_traffic`
+--
+ALTER TABLE `weekly_traffic`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `workshop`

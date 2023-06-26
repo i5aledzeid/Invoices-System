@@ -1,7 +1,7 @@
 <?php 
 // session_start();
 // if (isset($_SESSION['id']) && isset($_SESSION['user_name'])) {
-include "../db_conn.php";
+include "../database/db_conn.php";
 // require_once('db_conn.php');.
 //////////////// ROLE ///////////////
   session_start();

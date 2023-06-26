@@ -1,0 +1,16 @@
+# ErrorDocument 404 https://mkh888.000webhostapp.com/layouts/404/404.php
+# ErrorDocument 404 "Page not fount"
+ErrorDocument 404 /layouts/404/404.php
+
+#RewriteEngine on 
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME}\.html -f
+#RewriteRule ^(.*)$ $1.html [NC,L]
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [NC,L] 
+
+options -Indexes
+ErrorDocument 403 /layouts/404/404_v9.php
