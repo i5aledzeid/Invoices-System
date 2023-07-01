@@ -13,4 +13,4 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [NC,L] 
 
 options -Indexes
-ErrorDocument 403 /layouts/404/404_v9.php
+ErrorDocument 403 /layouts/404/403.php

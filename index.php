@@ -91,5 +91,14 @@
                </a></button>
           </div>
      </div>
+    <script language="javascript" type="text/javascript">
+        document.addEventListener("keydown", e => {
+          	e.preventDefault();
+          	if (e.key.toLowerCase() === "l" && e.ctrlKey) {
+                window.open('https://mkh888.000webhostapp.com/layouts/clock/index.php', '_SELF');
+            }
+            // console.log(e);
+        });
+    </script>
 </body>
 </html>
